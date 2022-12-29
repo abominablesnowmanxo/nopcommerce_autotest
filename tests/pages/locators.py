@@ -12,6 +12,7 @@ class LoginPageLocators:
     LOGIN_BUTTON = (By.CSS_SELECTOR, '.login-button')
     NO_ACCOUNT_FOUND_MESSAGE = (By.CSS_SELECTOR, ".message-error ul li")
     CREDENTIALS_ARE_INCORRECT_MESSAGE = (By.CSS_SELECTOR, ".message-error ul li")
+    EMAIL_ERROR = (By.CSS_SELECTOR, '#Email-error')
 
 
 # class RegistrationPageLocators:
