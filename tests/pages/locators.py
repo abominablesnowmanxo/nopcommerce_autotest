@@ -10,8 +10,8 @@ class LoginPageLocators:
     EMAIL_FIELD = (By.ID, 'Email')
     PASSWORD_FIELD = (By.ID, 'Password')
     LOGIN_BUTTON = (By.CSS_SELECTOR, '.login-button')
-    UNSUCCSESSFUL_LOGIN_MESSAGE = (By.XPATH, "//div[contains(text(), 'Login was unsuccessful')]")
-    NO_ACCOUNT_FOUND_MESSAGE = (By.XPATH, "//div//li[contains(text(), 'No customer account found')]")
+    NO_ACCOUNT_FOUND_MESSAGE = (By.CSS_SELECTOR, ".message-error ul li")
+    CREDENTIALS_ARE_INCORRECT_MESSAGE = (By.CSS_SELECTOR, ".message-error ul li")
 
 
 # class RegistrationPageLocators:
