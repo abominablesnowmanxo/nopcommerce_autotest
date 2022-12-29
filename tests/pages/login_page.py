@@ -13,7 +13,7 @@ class LoginPage(BasePage):
         print(self.driver.current_url)
         assert self.driver.current_url == MAIN_PAGE_URL, "User was not redirected to Home Page"
 
-    def test_user_cant_login_with_invalid_email_and_invalid_password(self):
+    def user_cant_login_with_invalid_email_and_invalid_password(self):
         self.driver.find_element(*LoginPageLocators.EMAIL_FIELD).send_keys(INVALID_EMAIL)
         self.driver.find_element(*LoginPageLocators.PASSWORD_FIELD).send_keys(INVALID_PASSWORD)
         self.driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
@@ -30,3 +30,15 @@ class LoginPage(BasePage):
     def should_be_credential_provided_are_incorrect_message(self):
         message = self.driver.find_element(*LoginPageLocators.CREDENTIALS_ARE_INCORRECT_MESSAGE)
         assert message.text == 'The credentials provided are incorrect'
+
+    def user_cant_login_with_invalid_email_and_valid_password(self):
+        self.driver.find_element(*LoginPageLocators.EMAIL_FIELD).send_keys(INVALID_EMAIL)
+        self.driver.find_element(*LoginPageLocators.PASSWORD_FIELD).send_keys(VALID_PASSWORD)
+        self.driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
+
+    def user_cant_login_with_empty_email_and_password_fields(self):
+        self.driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
+
+    def should_be_email_error_message(self):
+        message = self.driver.find_element(*LoginPageLocators.EMAIL_ERROR)
+        assert message.text == 'Please enter your email'

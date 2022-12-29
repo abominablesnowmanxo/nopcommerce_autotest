@@ -2,8 +2,8 @@ from selenium.webdriver.common.by import By
 
 
 class BasePageLocators:
-    MY_ACCOUNT_LINK = (By.LINK_TEXT, 'My account')
-    LOG_OUT_LINK = (By.LINK_TEXT, 'Log out')
+    MY_ACCOUNT_LINK = (By.CSS_SELECTOR, '.ico-account')
+    LOG_OUT_LINK = (By.CSS_SELECTOR, '.ico-logout')
 
 
 class LoginPageLocators:
@@ -12,6 +12,7 @@ class LoginPageLocators:
     LOGIN_BUTTON = (By.CSS_SELECTOR, '.login-button')
     NO_ACCOUNT_FOUND_MESSAGE = (By.CSS_SELECTOR, ".message-error ul li")
     CREDENTIALS_ARE_INCORRECT_MESSAGE = (By.CSS_SELECTOR, ".message-error ul li")
+    EMAIL_ERROR = (By.CSS_SELECTOR, '#Email-error')
 
 
 # class RegistrationPageLocators:
