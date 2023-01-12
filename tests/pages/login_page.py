@@ -3,6 +3,7 @@ from .locators import BasePageLocators, LoginPageLocators
 from tests.test_data import INVALID_EMAIL, INVALID_PASSWORD, VALID_EMAIL, VALID_PASSWORD
 from tests.urls import MAIN_PAGE_URL, PASSWORD_RECOVERY_URL, REGISTRATION_PAGE_URL
 
+
 class LoginPage(BasePage):
     def user_can_login_with_valid_email_and_valid_password(self):
         self.driver.find_element(*LoginPageLocators.EMAIL_FIELD).send_keys(VALID_EMAIL)
