@@ -17,12 +17,12 @@ class LoginPageLocators:
     REGISTER_BUTTON = (By.CSS_SELECTOR, ".register-button")
 
 
-# class RegistrationPageLocators:
-#     FIRST_NAME_FIELD = (By.ID, 'FirstName')
-#     LAST_NAME_FIELD = (By.ID, 'LastName')
-#     EMAIL_FIELD = (By.ID, 'Email')
-#     PASSWORD_FIELD = (By.ID, 'Password')
-#     CONFIRM_PASSWORD_FIELD = (By.ID, 'ConfirmPassword')
-#     SUBMIT_BUTTON = (By.ID, 'register-button')
-#     SUCCESSFUL_REGISTRAION_MESSAGE = (By.CSS_SELECTOR, '.result')
-#     CONTINUE_BUTTON = (By.CSS_SELECTOR, '.register-continue-button')
+class RegistrationPageLocators:
+    FIRST_NAME_FIELD = (By.ID, 'FirstName')
+    LAST_NAME_FIELD = (By.ID, 'LastName')
+    EMAIL_FIELD = (By.ID, 'Email')
+    PASSWORD_FIELD = (By.ID, 'Password')
+    CONFIRM_PASSWORD_FIELD = (By.ID, 'ConfirmPassword')
+    SUBMIT_BUTTON = (By.ID, 'register-button')
+    SUCCESSFUL_REGISTRAION_MESSAGE = (By.CSS_SELECTOR, '.result')
+    CONTINUE_BUTTON = (By.CSS_SELECTOR, '.register-continue-button')

@@ -1,3 +1,10 @@
+# REGISTRAION_DATA
+REGISTRAION_FIRST_NAME = 'Andrew'
+REGISTRAION_LAST_NAME = 'Smith'
+REGISTRAION_PASSWORD = 'StrongPassword123'
+
+
+# LOGIN DATA
 INVALID_EMAIL = 'invalid.email@gmail.com'
 INVALID_PASSWORD = 'invalid123'
 VALID_EMAIL = 'email@gmail.com'
