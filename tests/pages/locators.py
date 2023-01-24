@@ -31,3 +31,6 @@ class RegistrationPageLocators:
     MONTH_OF_BIRTH = (By.CSS_SELECTOR, "select[name='DateOfBirthMonth']")
     YEAR_OF_BIRTH = (By.CSS_SELECTOR, "select[name='DateOfBirthYear']")
     COMPANY_NAME = (By.ID, 'Company')
+    FIRST_NAME_ERROR = (By.ID, 'FirstName-error')
+    LAST_NAME_ERROR = (By.ID, 'LastName-error')
+    EMAIL_ERROR = (By.ID, 'Email-error')
