@@ -3,6 +3,7 @@ import time
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
 
 from .locators import BasePageLocators
 
@@ -14,6 +15,9 @@ class BasePage:
 
     def open_page(self):
         self.driver.get(self.url)
+
+    def select_from_dropdown_menu(self, by, selector):
+        return Select(self.driver.find_element(by, selector))
 
     def is_element_present(self, by, selector):
         try:

@@ -18,6 +18,7 @@ class LoginPageLocators:
 
 
 class RegistrationPageLocators:
+    GENDER_RADIO_MALE = (By.ID, 'gender-male')
     FIRST_NAME_FIELD = (By.ID, 'FirstName')
     LAST_NAME_FIELD = (By.ID, 'LastName')
     EMAIL_FIELD = (By.ID, 'Email')
@@ -26,3 +27,7 @@ class RegistrationPageLocators:
     SUBMIT_BUTTON = (By.ID, 'register-button')
     SUCCESSFUL_REGISTRAION_MESSAGE = (By.CSS_SELECTOR, '.result')
     CONTINUE_BUTTON = (By.CSS_SELECTOR, '.register-continue-button')
+    DAY_OF_BIRTH = (By.CSS_SELECTOR, "select[name='DateOfBirthDay']")
+    MONTH_OF_BIRTH = (By.CSS_SELECTOR, "select[name='DateOfBirthMonth']")
+    YEAR_OF_BIRTH = (By.CSS_SELECTOR, "select[name='DateOfBirthYear']")
+    COMPANY_NAME = (By.ID, 'Company')
