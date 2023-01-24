@@ -39,23 +39,9 @@ class RegistrationPage(BasePage):
     def should_be_continue_link_button(self):
         assert self.is_element_present(*RegistrationPageLocators.CONTINUE_BUTTON), "'Continue' button is not present"
 
-    def user_cant_register_without_providing_first_name_field(self):
+    def user_cannot_register_without_providing_first_name_field(self):
         self.driver.find_element(*RegistrationPageLocators.LAST_NAME_FIELD).send_keys(REGISTRATION_LAST_NAME)
         self.driver.find_element(*RegistrationPageLocators.EMAIL_FIELD).send_keys(random_email())
-        self.driver.find_element(*RegistrationPageLocators.PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
-        self.driver.find_element(*RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
-        self.driver.find_element(*RegistrationPageLocators.SUBMIT_BUTTON).click()
-
-    def user_cant_register_without_providing_last_name_field(self):
-        self.driver.find_element(*RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(REGISTRATION_FIRST_NAME)
-        self.driver.find_element(*RegistrationPageLocators.EMAIL_FIELD).send_keys(random_email())
-        self.driver.find_element(*RegistrationPageLocators.PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
-        self.driver.find_element(*RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
-        self.driver.find_element(*RegistrationPageLocators.SUBMIT_BUTTON).click()
-
-    def user_cant_register_without_providing_email_field(self):
-        self.driver.find_element(*RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(REGISTRATION_FIRST_NAME)
-        self.driver.find_element(*RegistrationPageLocators.LAST_NAME_FIELD).send_keys(REGISTRATION_LAST_NAME)
         self.driver.find_element(*RegistrationPageLocators.PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
         self.driver.find_element(*RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
         self.driver.find_element(*RegistrationPageLocators.SUBMIT_BUTTON).click()
@@ -64,13 +50,48 @@ class RegistrationPage(BasePage):
         message = self.driver.find_element(*RegistrationPageLocators.FIRST_NAME_ERROR)
         assert message.text == 'First name is required.', "'First name is required.' message is not present"
 
+    def user_cannot_register_without_providing_last_name_field(self):
+        self.driver.find_element(*RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(REGISTRATION_FIRST_NAME)
+        self.driver.find_element(*RegistrationPageLocators.EMAIL_FIELD).send_keys(random_email())
+        self.driver.find_element(*RegistrationPageLocators.PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
+        self.driver.find_element(*RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
+        self.driver.find_element(*RegistrationPageLocators.SUBMIT_BUTTON).click()
+
     def should_be_last_name_error_message(self):
         message = self.driver.find_element(*RegistrationPageLocators.LAST_NAME_ERROR)
         assert message.text == 'Last name is required.', "'Last name is required.' message is not present"
 
+    def user_cannot_register_without_providing_email_field(self):
+        self.driver.find_element(*RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(REGISTRATION_FIRST_NAME)
+        self.driver.find_element(*RegistrationPageLocators.LAST_NAME_FIELD).send_keys(REGISTRATION_LAST_NAME)
+        self.driver.find_element(*RegistrationPageLocators.PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
+        self.driver.find_element(*RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
+        self.driver.find_element(*RegistrationPageLocators.SUBMIT_BUTTON).click()
+
     def should_be_email_error_message(self):
         message = self.driver.find_element(*RegistrationPageLocators.EMAIL_ERROR)
         assert message.text == 'Email is required.', "'Email is required.' message is not present"
+
+    def user_cannot_register_without_providing_password_field(self):
+        self.driver.find_element(*RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(REGISTRATION_FIRST_NAME)
+        self.driver.find_element(*RegistrationPageLocators.LAST_NAME_FIELD).send_keys(REGISTRATION_LAST_NAME)
+        self.driver.find_element(*RegistrationPageLocators.EMAIL_FIELD).send_keys(random_email())
+        self.driver.find_element(*RegistrationPageLocators.SUBMIT_BUTTON).click()
+
+    def should_be_password_error_message(self):
+        message = self.driver.find_element(*RegistrationPageLocators.PASSWORD_ERROR)
+        assert message.text == 'Password is required.', "'Password is required.' message is not present"
+
+    def user_cannot_register_without_providing_confirm_password_field(self):
+        self.driver.find_element(*RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(REGISTRATION_FIRST_NAME)
+        self.driver.find_element(*RegistrationPageLocators.LAST_NAME_FIELD).send_keys(REGISTRATION_LAST_NAME)
+        self.driver.find_element(*RegistrationPageLocators.EMAIL_FIELD).send_keys(random_email())
+        self.driver.find_element(*RegistrationPageLocators.PASSWORD_FIELD).send_keys(REGISTRATION_PASSWORD)
+        self.driver.find_element(*RegistrationPageLocators.SUBMIT_BUTTON).click()
+
+    def should_be_confirm_password_error_message(self):
+        message = self.driver.find_element(*RegistrationPageLocators.CONFIRM_PASSWORD_ERROR)
+        assert message.text == 'Password is required.', "'Password is required.' message is not present"
 
     def user_stays_on_registration_page(self):
         assert self.driver.current_url == REGISTRATION_PAGE_URL

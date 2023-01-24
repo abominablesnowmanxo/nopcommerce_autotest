@@ -34,3 +34,5 @@ class RegistrationPageLocators:
     FIRST_NAME_ERROR = (By.ID, 'FirstName-error')
     LAST_NAME_ERROR = (By.ID, 'LastName-error')
     EMAIL_ERROR = (By.ID, 'Email-error')
+    PASSWORD_ERROR = (By.ID, 'Password-error')
+    CONFIRM_PASSWORD_ERROR = (By.ID, 'ConfirmPassword-error')

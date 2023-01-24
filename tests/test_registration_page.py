@@ -23,26 +23,42 @@ class TestRegistraionPage:
         page.should_be_continue_link_button()
 
     #TC_RF_003
-    def test_user_cant_register_without_providing_first_name_field(self, driver):
+    def test_user_cannot_register_without_providing_first_name_field(self, driver):
         page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
         page.open_page()
-        page.user_cant_register_without_providing_first_name_field()
+        page.user_cannot_register_without_providing_first_name_field()
         page.should_be_first_name_error_message()
         page.user_stays_on_registration_page()
 
 
     #TC_RF_004
-    def test_user_cant_register_without_providing_last_name_field(self, driver):
+    def test_user_cannot_register_without_providing_last_name_field(self, driver):
         page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
         page.open_page()
-        page.user_cant_register_without_providing_last_name_field()
+        page.user_cannot_register_without_providing_last_name_field()
         page.should_be_last_name_error_message()
         page.user_stays_on_registration_page()
 
     #TC_RF_005
-    def test_user_cant_register_without_providing_email_name_field(self, driver):
+    def test_user_cannot_register_without_providing_email_name_field(self, driver):
         page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
         page.open_page()
-        page.user_cant_register_without_providing_email_field()
+        page.user_cannot_register_without_providing_email_field()
         page.should_be_email_error_message()
+        page.user_stays_on_registration_page()
+
+    #TC_RF_006
+    def test_user_cannot_register_without_providing_password_field(self, driver):
+        page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
+        page.open_page()
+        page.user_cannot_register_without_providing_password_field()
+        page.should_be_password_error_message()
+        page.user_stays_on_registration_page()
+
+    #TC_RF_007
+    def test_user_cannot_register_without_providing_confirm_password_field(self, driver):
+        page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
+        page.open_page()
+        page.user_cannot_register_without_providing_confirm_password_field()
+        page.should_be_confirm_password_error_message()
         page.user_stays_on_registration_page()
