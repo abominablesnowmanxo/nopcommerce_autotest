@@ -1,3 +1,6 @@
+import random
+
+
 # REGISTRATION_DATA
 REGISTRATION_FIRST_NAME = 'Andrew'
 REGISTRATION_LAST_NAME = 'Smith'
