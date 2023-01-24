@@ -30,7 +30,6 @@ class TestRegistraionPage:
         page.should_be_first_name_error_message()
         page.user_stays_on_registration_page()
 
-
     #TC_RF_004
     def test_user_cannot_register_without_providing_last_name_field(self, driver):
         page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
@@ -61,4 +60,13 @@ class TestRegistraionPage:
         page.open_page()
         page.user_cannot_register_without_providing_confirm_password_field()
         page.should_be_confirm_password_error_message()
+        page.user_stays_on_registration_page()
+
+    #TC_RF_008
+    @pytest.mark.new
+    def test_user_cannot_register_if_password_and_confirm_password_fields_do_not_match(self, driver):
+        page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
+        page.open_page()
+        page.user_cannot_register_if_password_and_confirm_password_fields_do_not_match()
+        page.should_be_passwords_mismatch_error_message()
         page.user_stays_on_registration_page()
