@@ -25,7 +25,7 @@ class RegistrationPageLocators:
     PASSWORD_FIELD = (By.ID, 'Password')
     CONFIRM_PASSWORD_FIELD = (By.ID, 'ConfirmPassword')
     SUBMIT_BUTTON = (By.ID, 'register-button')
-    SUCCESSFUL_REGISTRAION_MESSAGE = (By.CSS_SELECTOR, '.result')
+    SUCCESSFUL_REGISTRATION_MESSAGE = (By.CSS_SELECTOR, '.result')
     CONTINUE_BUTTON = (By.CSS_SELECTOR, '.register-continue-button')
     DAY_OF_BIRTH = (By.CSS_SELECTOR, "select[name='DateOfBirthDay']")
     MONTH_OF_BIRTH = (By.CSS_SELECTOR, "select[name='DateOfBirthMonth']")
