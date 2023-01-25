@@ -28,7 +28,7 @@ class LoginPage(BasePage):
         assert (self.driver.current_url == MAIN_PAGE_URL,
                 "User was not redirected to Home Page")
 
-    def user_cant_login_with_invalid_email_and_invalid_password(self):
+    def user_cannot_login_with_invalid_email_and_invalid_password(self):
         self.enter_email(INVALID_EMAIL)
         self.enter_password(INVALID_PASSWORD)
         self.click_login_button()
@@ -38,7 +38,7 @@ class LoginPage(BasePage):
             *LoginPageLocators.NO_ACCOUNT_FOUND_MESSAGE)
         assert message.text == 'No customer account found'
 
-    def user_cant_login_with_valid_email_and_invalid_password(self):
+    def user_cannot_login_with_valid_email_and_invalid_password(self):
         self.enter_email(VALID_EMAIL)
         self.enter_password(INVALID_PASSWORD)
         self.click_login_button()
@@ -48,12 +48,12 @@ class LoginPage(BasePage):
             *LoginPageLocators.CREDENTIALS_ARE_INCORRECT_MESSAGE)
         assert message.text == 'The credentials provided are incorrect'
 
-    def user_cant_login_with_invalid_email_and_valid_password(self):
+    def user_cannot_login_with_invalid_email_and_valid_password(self):
         self.enter_email(INVALID_EMAIL)
         self.enter_password(VALID_PASSWORD)
         self.click_login_button()
 
-    def user_cant_login_with_empty_email_and_password_fields(self):
+    def user_cannot_login_with_empty_email_and_password_fields(self):
         self.driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
 
     def should_be_email_error_message(self):

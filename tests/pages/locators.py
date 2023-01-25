@@ -19,6 +19,7 @@ class LoginPageLocators:
 
 class RegistrationPageLocators:
     GENDER_RADIO_MALE = (By.ID, 'gender-male')
+    GENDER_RADIO_FEMALE = (By.ID, 'gender-female')
     FIRST_NAME_FIELD = (By.ID, 'FirstName')
     LAST_NAME_FIELD = (By.ID, 'LastName')
     EMAIL_FIELD = (By.ID, 'Email')

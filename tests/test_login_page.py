@@ -30,34 +30,34 @@ class TestLoginPage:
         page.log_out_link_is_present()
 
     #TC_LF_002
-    def test_user_cant_login_with_invalid_email_and_invalid_password(self, driver):
+    def test_user_cannot_login_with_invalid_email_and_invalid_password(self, driver):
         page = LoginPage(driver, LOGIN_PAGE_URL)
         page.open_page()
-        page.user_cant_login_with_invalid_email_and_invalid_password()
+        page.user_cannot_login_with_invalid_email_and_invalid_password()
         page.should_be_no_customer_account_found_message()
         page.log_out_link_is_not_present()
 
     #TC_LF_003
-    def test_user_cant_login_with_valid_email_and_invalid_password(self, driver):
+    def test_user_cannot_login_with_valid_email_and_invalid_password(self, driver):
         page = LoginPage(driver, LOGIN_PAGE_URL)
         page.open_page()
-        page.user_cant_login_with_valid_email_and_invalid_password()
+        page.user_cannot_login_with_valid_email_and_invalid_password()
         page.should_be_credential_provided_are_incorrect_message()
         page.log_out_link_is_not_present()
 
     #TC_LF_004
-    def test_user_cant_login_with_invalid_email_and_valid_password(self, driver):
+    def test_user_cannot_login_with_invalid_email_and_valid_password(self, driver):
         page = LoginPage(driver, LOGIN_PAGE_URL)
         page.open_page()
-        page.user_cant_login_with_invalid_email_and_valid_password()
+        page.user_cannot_login_with_invalid_email_and_valid_password()
         page.should_be_no_customer_account_found_message()
         page.log_out_link_is_not_present()
 
     #TC_LF_005
-    def test_user_cant_login_with_empty_email_and_password_fields(self, driver):
+    def test_user_cannot_login_with_empty_email_and_password_fields(self, driver):
         page = LoginPage(driver, LOGIN_PAGE_URL)
         page.open_page()
-        page.user_cant_login_with_empty_email_and_password_fields()
+        page.user_cannot_login_with_empty_email_and_password_fields()
         page.should_be_email_error_message()
         page.log_out_link_is_not_present()
 
