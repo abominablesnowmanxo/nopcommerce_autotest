@@ -2,11 +2,12 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.edge.options import Options as EdgeOptions
 
 
 def pytest_addoption(parser):
     parser.addoption('--browser', action='store', default='chrome',
-                     help='Choose browser: chrome or firefox')
+                     help='Choose browser: chrome, firefox, edge')
     parser.addoption('--headless', action='store_true', default=False)
 
 
@@ -23,8 +24,13 @@ def driver(request):
         if request.config.getoption('headless'):
             options.headless = True
         driver = webdriver.Firefox(options=options)
+    elif browser == 'edge':
+        options = EdgeOptions()
+        if request.config.getoption('headless'):
+            options.headless = True
+        driver = webdriver.Edge(options=options)
     else:
-        raise pytest.UsageError('--browser should be chrome or firefox')
+        raise pytest.UsageError('--browser should be chrome, firefox or edge')
     driver.maximize_window()
     yield driver
     driver.quit()
