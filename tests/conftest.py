@@ -1,6 +1,6 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 
 def pytest_addoption(parser):
@@ -12,12 +12,14 @@ def pytest_addoption(parser):
 def driver(request):
     browser = request.config.getoption('browser')
     if browser == 'chrome':
-        options = Options()
-        options.add_argument("--headless")
-        driver = webdriver.Chrome()
+        options = ChromeOptions()
+        options.headless = True
+        driver = webdriver.Chrome(options=options)
     elif browser == 'firefox':
         driver = webdriver.Firefox()
     else:
         raise pytest.UsageError('--browser should be chrome or firefox')
+    driver.maximize_window()
+    driver.implicitly_wait(10)
     yield driver
     driver.quit()

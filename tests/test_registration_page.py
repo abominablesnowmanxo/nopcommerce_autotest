@@ -63,7 +63,6 @@ class TestRegistraionPage:
         page.user_stays_on_registration_page()
 
     #TC_RF_008
-    @pytest.mark.new
     def test_user_cannot_register_if_password_and_confirm_password_fields_do_not_match(self, driver):
         page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
         page.open_page()
