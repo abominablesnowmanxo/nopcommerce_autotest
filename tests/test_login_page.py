@@ -1,12 +1,12 @@
 import pytest
 import time
 
-from tests.test_data import (
-    REGISTRATION_FIRST_NAME, REGISTRATION_LAST_NAME, VALID_EMAIL,
-    VALID_PASSWORD)
 from .pages.login_page import LoginPage
 from .pages.registration_page import RegistrationPage
-from tests.urls import LOGIN_PAGE_URL, REGISTRATION_PAGE_URL
+from tests.data.test_data import (
+    REGISTRATION_FIRST_NAME, REGISTRATION_LAST_NAME, VALID_EMAIL,
+    VALID_PASSWORD)
+from tests.data.urls import LOGIN_PAGE_URL, REGISTRATION_PAGE_URL
 
 
 class TestLoginPage:

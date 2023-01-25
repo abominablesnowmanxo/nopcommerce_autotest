@@ -1,13 +1,13 @@
 import time
 from .base_page import BasePage
 from .locators import RegistrationPageLocators
-from tests.random_data import random_email
-from tests.test_data import (
+from tests.data.random_data import random_email
+from tests.data.test_data import (
     REGISTRAION_GENDER, REGISTRATION_FIRST_NAME, REGISTRATION_LAST_NAME,
     REGISTRATION_PASSWORD, REGISTRATION_PASSWORD_MISMATCH, REGISTRATION_COMPANY,
     REGISTRATION_DATE_OF_BIRTH, REGISTRATION_MONTH_OF_BIRTH,
     REGISTRATION_YEAR_OF_BIRTH)
-from tests.urls import REGISTRATION_PAGE_URL
+from tests.data.urls import REGISTRATION_PAGE_URL
 
 
 class RegistrationPage(BasePage):

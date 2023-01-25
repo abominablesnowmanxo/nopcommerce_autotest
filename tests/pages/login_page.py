@@ -1,8 +1,8 @@
 from .base_page import BasePage
-from .locators import BasePageLocators, LoginPageLocators
-from tests.test_data import (
+from .locators import LoginPageLocators
+from tests.data.test_data import (
     INVALID_EMAIL, INVALID_PASSWORD, VALID_EMAIL, VALID_PASSWORD)
-from tests.urls import (
+from tests.data.urls import (
     MAIN_PAGE_URL, PASSWORD_RECOVERY_URL, REGISTRATION_PAGE_URL)
 
 

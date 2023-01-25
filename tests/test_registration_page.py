@@ -1,7 +1,7 @@
 import pytest
 import time
 from .pages.registration_page import RegistrationPage
-from tests.urls import REGISTRATION_PAGE_URL
+from tests.data.urls import REGISTRATION_PAGE_URL
 
 
 class TestRegistraionPage:
