@@ -14,19 +14,20 @@ def pytest_addoption(parser):
 @pytest.fixture(scope='function')
 def driver(request):
     browser = request.config.getoption('browser')
+    headless = request.config.getoption('headless')
     if browser == 'chrome':
         options = ChromeOptions()
-        if request.config.getoption('headless'):
+        if headless:
             options.headless = True
         driver = webdriver.Chrome(options=options)
     elif browser == 'firefox':
         options = FirefoxOptions()
-        if request.config.getoption('headless'):
+        if headless:
             options.headless = True
         driver = webdriver.Firefox(options=options)
     elif browser == 'edge':
         options = EdgeOptions()
-        if request.config.getoption('headless'):
+        if headless:
             options.headless = True
         driver = webdriver.Edge(options=options)
     else:
