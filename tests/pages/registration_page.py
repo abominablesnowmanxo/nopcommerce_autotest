@@ -1,12 +1,7 @@
 import time
 from .base_page import BasePage
 from .locators import RegistrationPageLocators
-from tests.data.random_data import random_email
-from tests.data.test_data import (
-    REGISTRAION_GENDER, REGISTRATION_FIRST_NAME, REGISTRATION_LAST_NAME,
-    REGISTRATION_PASSWORD, REGISTRATION_PASSWORD_MISMATCH, REGISTRATION_COMPANY,
-    REGISTRATION_DATE_OF_BIRTH, REGISTRATION_MONTH_OF_BIRTH,
-    REGISTRATION_YEAR_OF_BIRTH)
+from tests.data.test_data import generate_user
 from tests.data.urls import REGISTRATION_PAGE_URL
 
 
@@ -32,6 +27,10 @@ class RegistrationPage(BasePage):
         self.driver.find_element(
             *RegistrationPageLocators.PASSWORD_FIELD).send_keys(password)
 
+    def enter_confirm_password(self, password):
+        self.driver.find_element(
+            *RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(password)
+
     def enter_date_of_birth(self, day, month, year):
         self.select_from_dropdown_menu(
             *RegistrationPageLocators.DAY_OF_BIRTH).select_by_value(day)
@@ -48,35 +47,30 @@ class RegistrationPage(BasePage):
             self.driver.find_element(
                 *RegistrationPageLocators.GENDER_RADIO_FEMALE).click()
 
-
-    def enter_confirm_password(self, password):
-        self.driver.find_element(
-            *RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(password)
-
     def click_submit_button(self):
         self.driver.find_element(
             *RegistrationPageLocators.SUBMIT_BUTTON).click()
 
     def user_can_registrer_providing_required_fields_only(self):
-        self.enter_first_name(REGISTRATION_FIRST_NAME)
-        self.enter_last_name(REGISTRATION_LAST_NAME)
-        self.enter_email(random_email())
-        self.enter_password(REGISTRATION_PASSWORD)
-        self.enter_confirm_password(REGISTRATION_PASSWORD)
+        user = generate_user()
+        self.enter_first_name(user.first_name)
+        self.enter_last_name(user.last_name)
+        self.enter_email(user.email)
+        self.enter_password(user.password)
+        self.enter_confirm_password(user.password)
         self.click_submit_button()
 
     def user_can_register_providing_all_the_fields(self):
-        self.select_gender(REGISTRAION_GENDER)
-        self.enter_first_name(REGISTRATION_FIRST_NAME)
-        self.enter_last_name(REGISTRATION_LAST_NAME)
+        user = generate_user()
+        self.select_gender(user.gender)
+        self.enter_first_name(user.first_name)
+        self.enter_last_name(user.last_name)
         self.enter_date_of_birth(
-            REGISTRATION_DATE_OF_BIRTH,
-            REGISTRATION_MONTH_OF_BIRTH,
-            REGISTRATION_YEAR_OF_BIRTH)
-        self.enter_email(random_email())
-        self.enter_company_name(REGISTRATION_COMPANY)
-        self.enter_password(REGISTRATION_PASSWORD)
-        self.enter_confirm_password(REGISTRATION_PASSWORD)
+            user.day_of_birth, user.month_of_birth, user.year_of_birth)
+        self.enter_email(user.email)
+        self.enter_company_name(user.company)
+        self.enter_password(user.password)
+        self.enter_confirm_password(user.password)
         self.click_submit_button()
 
 
@@ -91,10 +85,11 @@ class RegistrationPage(BasePage):
                 "'Continue' button is not present")
 
     def user_cannot_register_without_providing_first_name_field(self):
-        self.enter_last_name(REGISTRATION_LAST_NAME)
-        self.enter_email(random_email())
-        self.enter_password(REGISTRATION_PASSWORD)
-        self.enter_confirm_password(REGISTRATION_PASSWORD)
+        user = generate_user()
+        self.enter_last_name(user.last_name)
+        self.enter_email(user.email)
+        self.enter_password(user.password)
+        self.enter_confirm_password(user.password)
         self.click_submit_button()
 
     def should_be_first_name_error_message(self):
@@ -104,10 +99,11 @@ class RegistrationPage(BasePage):
                 "'First name is required.' message is not present")
 
     def user_cannot_register_without_providing_last_name_field(self):
-        self.enter_first_name(REGISTRATION_FIRST_NAME)
-        self.enter_email(random_email())
-        self.enter_password(REGISTRATION_PASSWORD)
-        self.enter_confirm_password(REGISTRATION_PASSWORD)
+        user = generate_user()
+        self.enter_first_name(user.first_name)
+        self.enter_email(user.email)
+        self.enter_password(user.password)
+        self.enter_confirm_password(user.password)
         self.click_submit_button()
 
     def should_be_last_name_error_message(self):
@@ -117,10 +113,11 @@ class RegistrationPage(BasePage):
                 "'Last name is required.' message is not present")
 
     def user_cannot_register_without_providing_email_field(self):
-        self.enter_first_name(REGISTRATION_FIRST_NAME)
-        self.enter_last_name(REGISTRATION_LAST_NAME)
-        self.enter_password(REGISTRATION_PASSWORD)
-        self.enter_confirm_password(REGISTRATION_PASSWORD)
+        user = generate_user()
+        self.enter_first_name(user.first_name)
+        self.enter_last_name(user.last_name)
+        self.enter_password(user.password)
+        self.enter_confirm_password(user.password)
         self.click_submit_button()
 
     def should_be_email_error_message(self):
@@ -130,9 +127,10 @@ class RegistrationPage(BasePage):
                 "'Email is required.' message is not present")
 
     def user_cannot_register_without_providing_password_field(self):
-        self.enter_first_name(REGISTRATION_FIRST_NAME)
-        self.enter_last_name(REGISTRATION_LAST_NAME)
-        self.enter_email(random_email())
+        user = generate_user()
+        self.enter_first_name(user.first_name)
+        self.enter_last_name(user.last_name)
+        self.enter_email(user.email)
         self.click_submit_button()
 
     def should_be_password_error_message(self):
@@ -142,10 +140,11 @@ class RegistrationPage(BasePage):
                 "'Password is required.' message is not present")
 
     def user_cannot_register_without_providing_confirm_password_field(self):
-        self.enter_first_name(REGISTRATION_FIRST_NAME)
-        self.enter_last_name(REGISTRATION_LAST_NAME)
-        self.enter_email(random_email())
-        self.enter_password(REGISTRATION_PASSWORD)
+        user = generate_user()
+        self.enter_first_name(user.first_name)
+        self.enter_last_name(user.last_name)
+        self.enter_email(user.email)
+        self.enter_password(user.password)
         self.click_submit_button()
 
     def should_be_confirm_password_error_message(self):
@@ -155,18 +154,20 @@ class RegistrationPage(BasePage):
                 "'Password is required.' message is not present")
 
     def user_cannot_register_if_password_and_confirm_password_fields_do_not_match(self):
-        self.enter_first_name(REGISTRATION_FIRST_NAME)
-        self.enter_last_name(REGISTRATION_LAST_NAME)
-        self.enter_email(random_email())
-        self.enter_password(REGISTRATION_PASSWORD)
-        self.enter_confirm_password(REGISTRATION_PASSWORD_MISMATCH)
+        user = generate_user()
+        self.enter_first_name(user.first_name)
+        self.enter_last_name(user.last_name)
+        self.enter_email(user.email)
+        self.enter_password(user.password)
+        self.enter_confirm_password(user.password_mismatch)
         self.click_submit_button()
 
     def should_be_passwords_mismatch_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.CONFIRM_PASSWORD_ERROR)
-        assert (message.text == 'The password and confirmation password do not match.',
-                "'The password and confirmation password do not match.' message is not present")
+        assert (
+            message.text == 'The password and confirmation password do not match.',
+            "'The password and confirmation password do not match.' message is not present")
 
     def user_stays_on_registration_page(self):
         assert self.driver.current_url == REGISTRATION_PAGE_URL

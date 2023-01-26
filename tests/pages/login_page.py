@@ -1,7 +1,7 @@
+import time
 from .base_page import BasePage
 from .locators import LoginPageLocators
-from tests.data.test_data import (
-    INVALID_EMAIL, INVALID_PASSWORD, VALID_EMAIL, VALID_PASSWORD)
+from tests.data.test_data import User
 from tests.data.urls import (
     MAIN_PAGE_URL, PASSWORD_RECOVERY_URL, REGISTRATION_PAGE_URL)
 
@@ -19,28 +19,29 @@ class LoginPage(BasePage):
     def click_login_button(self):
         self.driver.find_element(*LoginPageLocators.LOGIN_BUTTON).click()
 
-    def user_can_login_with_valid_email_and_valid_password(self):
-        self.enter_email(VALID_EMAIL)
-        self.enter_password(VALID_PASSWORD)
+    def user_can_login_with_valid_email_and_valid_password(self, user: User):
+        self.enter_email(user.email)
+        self.enter_password(user.password)
         self.click_login_button()
 
     def user_redirected_to_main_page_after_successful_login(self):
         assert (self.driver.current_url == MAIN_PAGE_URL,
                 "User was not redirected to Home Page")
 
-    def user_cannot_login_with_invalid_email_and_invalid_password(self):
-        self.enter_email(INVALID_EMAIL)
-        self.enter_password(INVALID_PASSWORD)
+    def user_cannot_login_with_invalid_email_and_invalid_password(self, user: User):
+        self.enter_email(user.password_mismatch)
+        self.enter_password(user.password_mismatch)
         self.click_login_button()
+
 
     def should_be_no_customer_account_found_message(self):
         message = self.driver.find_element(
             *LoginPageLocators.NO_ACCOUNT_FOUND_MESSAGE)
         assert message.text == 'No customer account found'
 
-    def user_cannot_login_with_valid_email_and_invalid_password(self):
-        self.enter_email(VALID_EMAIL)
-        self.enter_password(INVALID_PASSWORD)
+    def user_cannot_login_with_valid_email_and_invalid_password(self, user: User):
+        self.enter_email(user.email)
+        self.enter_password(user.password_mismatch)
         self.click_login_button()
 
     def should_be_credential_provided_are_incorrect_message(self):
@@ -48,9 +49,9 @@ class LoginPage(BasePage):
             *LoginPageLocators.CREDENTIALS_ARE_INCORRECT_MESSAGE)
         assert message.text == 'The credentials provided are incorrect'
 
-    def user_cannot_login_with_invalid_email_and_valid_password(self):
-        self.enter_email(INVALID_EMAIL)
-        self.enter_password(VALID_PASSWORD)
+    def user_cannot_login_with_invalid_email_and_valid_password(self, user: User):
+        self.enter_email(user.email_mismatch)
+        self.enter_password(user.password)
         self.click_login_button()
 
     def user_cannot_login_with_empty_email_and_password_fields(self):
