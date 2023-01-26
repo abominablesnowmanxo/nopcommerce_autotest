@@ -1,5 +1,5 @@
-
 import time
+
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -36,7 +36,9 @@ class BasePage:
         return False
 
     def log_out_link_is_present(self):
-        assert self.is_element_present(*BasePageLocators.LOG_OUT_LINK), "'Log out' link is not present"
+        assert (self.is_element_present(*BasePageLocators.LOG_OUT_LINK),
+                "'Log out' link is not present")
 
     def log_out_link_is_not_present(self):
-        assert self.is_not_element_present(*BasePageLocators.LOG_OUT_LINK), "'Log out' link is present"
+        assert (self.is_not_element_present(*BasePageLocators.LOG_OUT_LINK),
+                "'Log out' link is present")
