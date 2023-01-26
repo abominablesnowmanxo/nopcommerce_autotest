@@ -1,7 +1,6 @@
-import time
-from .base_page import BasePage
-from .locators import LoginPageLocators
-from tests.data.test_data import User
+from tests.pages.base_page import BasePage
+from tests.pages.locators import LoginPageLocators
+from tests.data.user_model import User
 from tests.data.urls import (
     MAIN_PAGE_URL, PASSWORD_RECOVERY_URL, REGISTRATION_PAGE_URL)
 
@@ -29,7 +28,7 @@ class LoginPage(BasePage):
                 "User was not redirected to Home Page")
 
     def user_cannot_login_with_invalid_email_and_invalid_password(self, user: User):
-        self.enter_email(user.password_mismatch)
+        self.enter_email(user.email_mismatch)
         self.enter_password(user.password_mismatch)
         self.click_login_button()
 

@@ -3,11 +3,11 @@ import time
 
 from .pages.login_page import LoginPage
 from .pages.registration_page import RegistrationPage
-from tests.data.test_data import generate_user
+from tests.data.random_data import generate_user
 from tests.data.urls import LOGIN_PAGE_URL, REGISTRATION_PAGE_URL
 
 
-class TestLoginPage:
+class TestLoginFunctionality:
     @pytest.fixture(scope='function', autouse=True)
     def setup_method(self, driver):
         user = generate_user()
@@ -56,6 +56,9 @@ class TestLoginPage:
         page.user_cannot_login_with_empty_email_and_password_fields()
         page.should_be_email_error_message()
         page.log_out_link_is_not_present()
+
+
+class TestLoginPage:
 
     #TC_LF_006
     def test_forgot_password_link_is_present_and_lead_to_password_recovery_page(self, driver):

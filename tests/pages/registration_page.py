@@ -1,7 +1,7 @@
 import time
-from .base_page import BasePage
-from .locators import RegistrationPageLocators
-from tests.data.test_data import generate_user
+from tests.pages.base_page import BasePage
+from tests.pages.locators import RegistrationPageLocators
+from tests.data.random_data import generate_user
 from tests.data.urls import REGISTRATION_PAGE_URL
 
 
