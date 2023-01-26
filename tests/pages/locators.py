@@ -37,3 +37,4 @@ class RegistrationPageLocators:
     EMAIL_ERROR = (By.ID, 'Email-error')
     PASSWORD_ERROR = (By.ID, 'Password-error')
     CONFIRM_PASSWORD_ERROR = (By.ID, 'ConfirmPassword-error')
+    SHORT_PASSWORD_ERROR = (By.CSS_SELECTOR, 'span#Password-error ul li')

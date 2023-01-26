@@ -4,7 +4,7 @@ from tests.pages.registration_page import RegistrationPage
 from tests.data.urls import REGISTRATION_PAGE_URL
 
 
-class TestRegistraionPage:
+class TestRegistrationPagePositive:
 
     #TC_RF_001
     def test_user_can_register_providing_only_required_fields(self, driver):
@@ -15,13 +15,15 @@ class TestRegistraionPage:
         page.should_be_continue_link_button()
 
     #TC_RF_002
-    @pytest.mark.new
     def test_user_can_register_providing_all_the_fields(self, driver):
         page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
         page.open_page()
         page.user_can_register_providing_all_the_fields()
         page.should_be_registration_successful_message()
         page.should_be_continue_link_button()
+
+
+class TestRegistrationPageNegative:
 
     #TC_RF_003
     def test_user_cannot_register_without_providing_first_name_field(self, driver):
@@ -69,4 +71,13 @@ class TestRegistraionPage:
         page.open_page()
         page.user_cannot_register_if_password_and_confirm_password_fields_do_not_match()
         page.should_be_passwords_mismatch_error_message()
+        page.user_stays_on_registration_page()
+
+    #TC_RF_009
+    @pytest.mark.parametrize('password', ['1', '12345'])
+    def test_user_cannot_register_if_password_has_less_that_six_chars(self, driver, password):
+        page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
+        page.open_page()
+        page.user_cannot_register_if_password_has_less_that_six_chars(password)
+        page.should_be_short_password_error_massage()
         page.user_stays_on_registration_page()

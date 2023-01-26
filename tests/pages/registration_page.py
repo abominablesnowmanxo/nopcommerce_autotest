@@ -172,6 +172,21 @@ class RegistrationPage(BasePage):
     def user_stays_on_registration_page(self):
         assert self.driver.current_url == REGISTRATION_PAGE_URL
 
+    def user_cannot_register_if_password_has_less_that_six_chars(self, short_password):
+        user = generate_user()
+        self.enter_first_name(user.first_name)
+        self.enter_last_name(user.last_name)
+        self.enter_email(user.email)
+        self.enter_password(short_password)
+        self.enter_confirm_password(short_password)
+        self.click_submit_button()
+
+    def should_be_short_password_error_massage(self):
+        message = self.driver.find_element(
+            *RegistrationPageLocators.SHORT_PASSWORD_ERROR)
+        assert (message.text == 'must have at least 6 characters',
+                "'must have at least 6 characters' message is not present")
+
     def register_new_user(self, firstname, lastname, email, password):
         self.enter_first_name(firstname)
         self.enter_last_name(lastname)

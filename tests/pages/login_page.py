@@ -32,7 +32,6 @@ class LoginPage(BasePage):
         self.enter_password(user.password_mismatch)
         self.click_login_button()
 
-
     def should_be_no_customer_account_found_message(self):
         message = self.driver.find_element(
             *LoginPageLocators.NO_ACCOUNT_FOUND_MESSAGE)
