@@ -3,8 +3,8 @@ from faker import Faker
 
 from tests.data.user_model import User
 
-
 faker_en = Faker('En')
+
 
 def generate_user():
     return User(

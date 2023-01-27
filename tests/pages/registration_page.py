@@ -1,4 +1,3 @@
-import time
 from tests.pages.base_page import BasePage
 from tests.pages.locators import RegistrationPageLocators
 from tests.data.random_data import generate_user
@@ -73,16 +72,16 @@ class RegistrationPage(BasePage):
         self.enter_confirm_password(user.password)
         self.click_submit_button()
 
-
     def should_be_registration_successful_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.SUCCESSFUL_REGISTRATION_MESSAGE)
-        assert (message.text == 'Your registration completed',
-                'Registration was unsuccessful')
+        assert message.text == 'Your registration completed', \
+               'Registration was unsuccessful'
 
     def should_be_continue_link_button(self):
-        assert (self.is_element_present(*RegistrationPageLocators.CONTINUE_BUTTON),
-                "'Continue' button is not present")
+        assert self.is_element_present(
+            *RegistrationPageLocators.CONTINUE_BUTTON), \
+                "'Continue' button is not present"
 
     def user_cannot_register_without_providing_first_name_field(self):
         user = generate_user()
@@ -95,8 +94,8 @@ class RegistrationPage(BasePage):
     def should_be_first_name_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.FIRST_NAME_ERROR)
-        assert (message.text == 'First name is required.',
-                "'First name is required.' message is not present")
+        assert message.text == 'First name is required.', \
+               "'First name is required.' message is not present"
 
     def user_cannot_register_without_providing_last_name_field(self):
         user = generate_user()
@@ -109,8 +108,8 @@ class RegistrationPage(BasePage):
     def should_be_last_name_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.LAST_NAME_ERROR)
-        assert (message.text == 'Last name is required.',
-                "'Last name is required.' message is not present")
+        assert message.text == 'Last name is required.', \
+               "'Last name is required.' message is not present"
 
     def user_cannot_register_without_providing_email_field(self):
         user = generate_user()
@@ -123,8 +122,8 @@ class RegistrationPage(BasePage):
     def should_be_email_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.EMAIL_ERROR)
-        assert (message.text == 'Email is required.',
-                "'Email is required.' message is not present")
+        assert message.text == 'Email is required.', \
+               "'Email is required.' message is not present"
 
     def user_cannot_register_without_providing_password_field(self):
         user = generate_user()
@@ -136,8 +135,8 @@ class RegistrationPage(BasePage):
     def should_be_password_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.PASSWORD_ERROR)
-        assert (message.text == 'Password is required.',
-                "'Password is required.' message is not present")
+        assert message.text == 'Password is required.', \
+               "'Password is required.' message is not present"
 
     def user_cannot_register_without_providing_confirm_password_field(self):
         user = generate_user()
@@ -150,8 +149,8 @@ class RegistrationPage(BasePage):
     def should_be_confirm_password_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.CONFIRM_PASSWORD_ERROR)
-        assert (message.text == 'Password is required.',
-                "'Password is required.' message is not present")
+        assert message.text == 'Password is required.', \
+               "'Password is required.' message is not present"
 
     def user_cannot_register_if_password_and_confirm_password_fields_do_not_match(self):
         user = generate_user()
@@ -165,9 +164,8 @@ class RegistrationPage(BasePage):
     def should_be_passwords_mismatch_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.CONFIRM_PASSWORD_ERROR)
-        assert (
-            message.text == 'The password and confirmation password do not match.',
-            "'The password and confirmation password do not match.' message is not present")
+        assert message.text == 'The password and confirmation password do not match.', \
+            "'The password and confirmation password do not match.' message is not present"
 
     def user_stays_on_registration_page(self):
         assert self.driver.current_url == REGISTRATION_PAGE_URL
@@ -184,8 +182,8 @@ class RegistrationPage(BasePage):
     def should_be_short_password_error_massage(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.SHORT_PASSWORD_ERROR)
-        assert (message.text == 'must have at least 6 characters',
-                "'must have at least 6 characters' message is not present")
+        assert message.text == 'must have at least 6 characters', \
+               "'must have at least 6 characters' warning is not present"
 
     def register_new_user(self, firstname, lastname, email, password):
         self.enter_first_name(firstname)

@@ -24,10 +24,13 @@ class LoginPage(BasePage):
         self.click_login_button()
 
     def user_redirected_to_main_page_after_successful_login(self):
-        assert (self.driver.current_url == MAIN_PAGE_URL,
-                "User was not redirected to Home Page")
+        assert self.driver.current_url == MAIN_PAGE_URL, \
+               "User was not redirected to Home Page"
 
-    def user_cannot_login_with_invalid_email_and_invalid_password(self, user: User):
+    def user_cannot_login_with_invalid_email_and_invalid_password(
+            self,
+            user: User
+            ):
         self.enter_email(user.email_mismatch)
         self.enter_password(user.password_mismatch)
         self.click_login_button()
@@ -35,9 +38,13 @@ class LoginPage(BasePage):
     def should_be_no_customer_account_found_message(self):
         message = self.driver.find_element(
             *LoginPageLocators.NO_ACCOUNT_FOUND_MESSAGE)
-        assert message.text == 'No customer account found'
+        assert message.text == 'No customer account found', \
+               "'No customer account found' is not present"
 
-    def user_cannot_login_with_valid_email_and_invalid_password(self, user: User):
+    def user_cannot_login_with_valid_email_and_invalid_password(
+            self,
+            user: User
+            ):
         self.enter_email(user.email)
         self.enter_password(user.password_mismatch)
         self.click_login_button()
@@ -47,7 +54,10 @@ class LoginPage(BasePage):
             *LoginPageLocators.CREDENTIALS_ARE_INCORRECT_MESSAGE)
         assert message.text == 'The credentials provided are incorrect'
 
-    def user_cannot_login_with_invalid_email_and_valid_password(self, user: User):
+    def user_cannot_login_with_invalid_email_and_valid_password(
+            self,
+            user: User
+            ):
         self.enter_email(user.email_mismatch)
         self.enter_password(user.password)
         self.click_login_button()
@@ -61,18 +71,18 @@ class LoginPage(BasePage):
 
     def user_can_go_to_password_recovery_page(self):
         self.driver.find_element(*LoginPageLocators.FORGOT_PASSWORD).click()
-        assert (self.driver.current_url == PASSWORD_RECOVERY_URL,
-                "User was not redirected to password recovery page")
+        assert self.driver.current_url == PASSWORD_RECOVERY_URL, \
+               "User was not redirected to password recovery page"
 
     def should_be_forgot_password_link(self):
-        assert (self.is_element_present(*LoginPageLocators.FORGOT_PASSWORD),
-                "'Forgot Password?' link is not present")
+        assert self.is_element_present(*LoginPageLocators.FORGOT_PASSWORD), \
+               "'Forgot Password?' link is not present"
 
     def user_can_go_to_register_page_clicking_register_button(self):
         self.driver.find_element(*LoginPageLocators.REGISTER_BUTTON).click()
-        assert (self.driver.current_url == REGISTRATION_PAGE_URL,
-                "User was not redirected to registration page")
+        assert self.driver.current_url == REGISTRATION_PAGE_URL, \
+               "User was not redirected to registration page"
 
     def should_be_register_button(self):
-        assert (self.is_element_present(*LoginPageLocators.REGISTER_BUTTON),
-                "'Register' button is not present")
+        assert self.is_element_present(*LoginPageLocators.REGISTER_BUTTON), \
+               "'Register' button is not present"
