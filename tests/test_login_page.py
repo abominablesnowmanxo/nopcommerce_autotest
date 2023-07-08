@@ -2,14 +2,15 @@ import pytest
 
 from tests.pages.login_page import LoginPage
 from tests.pages.registration_page import RegistrationPage
-from tests.data.random_data import generate_user
+# from tests.data.random_data import generate_user
+from tests.data.user_model import User
 from tests.data.urls import LOGIN_PAGE_URL, REGISTRATION_PAGE_URL
 
 
 class TestLoginFunctionality:
-    @pytest.fixture(scope='function', autouse=True)
-    def setup_method(self, driver):
-        user = generate_user()
+    @pytest.fixture(scope='function')
+    def user(self, driver):
+        user = User()
         page = RegistrationPage(driver, REGISTRATION_PAGE_URL)
         page.open_page()
         page.register_new_user(
@@ -21,34 +22,34 @@ class TestLoginFunctionality:
         yield user
 
     # TC_LF_001
-    def test_user_can_login_with_valid_email_and_valid_password(self, driver, setup_method):
+    def test_user_can_login_with_valid_email_and_valid_password(self, driver, user):
         page = LoginPage(driver, LOGIN_PAGE_URL)
         page.open_page()
-        page.user_can_login_with_valid_email_and_valid_password(setup_method)
+        page.user_can_login_with_valid_email_and_valid_password(user)
         page.user_redirected_to_main_page_after_successful_login()
         page.log_out_link_is_present()
 
     # TC_LF_002
-    def test_user_cannot_login_with_invalid_email_and_invalid_password(self, driver, setup_method):
+    def test_user_cannot_login_with_invalid_email_and_invalid_password(self, driver, user):
         page = LoginPage(driver, LOGIN_PAGE_URL)
         page.open_page()
-        page.user_cannot_login_with_invalid_email_and_invalid_password(setup_method)
+        page.user_cannot_login_with_invalid_email_and_invalid_password(user)
         page.should_be_no_customer_account_found_message()
         page.log_out_link_is_not_present()
 
     # TC_LF_003
-    def test_user_cannot_login_with_valid_email_and_invalid_password(self, driver, setup_method):
+    def test_user_cannot_login_with_valid_email_and_invalid_password(self, driver, user):
         page = LoginPage(driver, LOGIN_PAGE_URL)
         page.open_page()
-        page.user_cannot_login_with_valid_email_and_invalid_password(setup_method)
+        page.user_cannot_login_with_valid_email_and_invalid_password(user)
         page.should_be_credential_provided_are_incorrect_message()
         page.log_out_link_is_not_present()
 
     # TC_LF_004
-    def test_user_cannot_login_with_invalid_email_and_valid_password(self, driver, setup_method):
+    def test_user_cannot_login_with_invalid_email_and_valid_password(self, driver, user):
         page = LoginPage(driver, LOGIN_PAGE_URL)
         page.open_page()
-        page.user_cannot_login_with_invalid_email_and_valid_password(setup_method)
+        page.user_cannot_login_with_invalid_email_and_valid_password(user)
         page.should_be_no_customer_account_found_message()
         page.log_out_link_is_not_present()
 

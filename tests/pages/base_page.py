@@ -2,13 +2,14 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.remote.webdriver import WebDriver
 
 from tests.pages.locators import BasePageLocators
 
 
 class BasePage:
     def __init__(self, driver, url):
-        self.driver = driver
+        self.driver: WebDriver = driver
         self.url = url
 
     def open_page(self):

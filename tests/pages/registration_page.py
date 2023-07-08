@@ -1,6 +1,6 @@
 from tests.pages.base_page import BasePage
 from tests.pages.locators import RegistrationPageLocators
-from tests.data.random_data import generate_user
+from tests.data.user_model import User
 from tests.data.urls import REGISTRATION_PAGE_URL
 
 
@@ -51,7 +51,7 @@ class RegistrationPage(BasePage):
             *RegistrationPageLocators.SUBMIT_BUTTON).click()
 
     def user_can_registrer_providing_required_fields_only(self):
-        user = generate_user()
+        user = User()
         self.enter_first_name(user.first_name)
         self.enter_last_name(user.last_name)
         self.enter_email(user.email)
@@ -60,7 +60,7 @@ class RegistrationPage(BasePage):
         self.click_submit_button()
 
     def user_can_register_providing_all_the_fields(self):
-        user = generate_user()
+        user = User()
         self.select_gender(user.gender)
         self.enter_first_name(user.first_name)
         self.enter_last_name(user.last_name)
@@ -84,7 +84,7 @@ class RegistrationPage(BasePage):
                 "'Continue' button is not present"
 
     def user_cannot_register_without_providing_first_name_field(self):
-        user = generate_user()
+        user = User()
         self.enter_last_name(user.last_name)
         self.enter_email(user.email)
         self.enter_password(user.password)
@@ -98,7 +98,7 @@ class RegistrationPage(BasePage):
                "'First name is required.' message is not present"
 
     def user_cannot_register_without_providing_last_name_field(self):
-        user = generate_user()
+        user = User()
         self.enter_first_name(user.first_name)
         self.enter_email(user.email)
         self.enter_password(user.password)
@@ -112,7 +112,7 @@ class RegistrationPage(BasePage):
                "'Last name is required.' message is not present"
 
     def user_cannot_register_without_providing_email_field(self):
-        user = generate_user()
+        user = User()
         self.enter_first_name(user.first_name)
         self.enter_last_name(user.last_name)
         self.enter_password(user.password)
@@ -126,7 +126,7 @@ class RegistrationPage(BasePage):
                "'Email is required.' message is not present"
 
     def user_cannot_register_without_providing_password_field(self):
-        user = generate_user()
+        user = User()
         self.enter_first_name(user.first_name)
         self.enter_last_name(user.last_name)
         self.enter_email(user.email)
@@ -139,7 +139,7 @@ class RegistrationPage(BasePage):
                "'Password is required.' message is not present"
 
     def user_cannot_register_without_providing_confirm_password_field(self):
-        user = generate_user()
+        user = User()
         self.enter_first_name(user.first_name)
         self.enter_last_name(user.last_name)
         self.enter_email(user.email)
@@ -153,7 +153,7 @@ class RegistrationPage(BasePage):
                "'Password is required.' message is not present"
 
     def user_cannot_register_if_password_and_confirm_password_fields_do_not_match(self):
-        user = generate_user()
+        user = User()
         self.enter_first_name(user.first_name)
         self.enter_last_name(user.last_name)
         self.enter_email(user.email)
@@ -171,7 +171,7 @@ class RegistrationPage(BasePage):
         assert self.driver.current_url == REGISTRATION_PAGE_URL
 
     def user_cannot_register_if_password_has_less_that_six_chars(self, short_password):
-        user = generate_user()
+        user = User()
         self.enter_first_name(user.first_name)
         self.enter_last_name(user.last_name)
         self.enter_email(user.email)
