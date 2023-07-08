@@ -7,7 +7,8 @@ from selenium.webdriver.edge.options import Options as EdgeOptions
 
 def pytest_addoption(parser):
     parser.addoption('--browser', action='store', default='chrome',
-                     help='Choose browser: chrome, firefox, edge')
+                     help='Choose browser: chrome, firefox, edge',
+                     choices=('chrome', 'firefox', 'edge'))
     parser.addoption('--headless', action='store_true', default=False)
 
 
