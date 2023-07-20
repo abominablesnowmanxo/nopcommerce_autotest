@@ -75,7 +75,7 @@ class LoginPage(BasePage):
                "User was not redirected to password recovery page"
 
     def should_be_forgot_password_link(self):
-        assert self.is_element_present(*LoginPageLocators.FORGOT_PASSWORD), \
+        assert self.element_is_present(*LoginPageLocators.FORGOT_PASSWORD), \
                "'Forgot Password?' link is not present"
 
     def user_can_go_to_register_page_clicking_register_button(self):
@@ -84,5 +84,5 @@ class LoginPage(BasePage):
                "User was not redirected to registration page"
 
     def should_be_register_button(self):
-        assert self.is_element_present(*LoginPageLocators.REGISTER_BUTTON), \
+        assert self.element_is_present(*LoginPageLocators.REGISTER_BUTTON), \
                "'Register' button is not present"

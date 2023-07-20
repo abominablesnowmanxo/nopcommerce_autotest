@@ -81,7 +81,7 @@ class RegistrationPage(BasePage):
         self.enter_password(user.password)
         self.enter_confirm_password(user.password)
         self.click_submit_button()
-    
+
     def should_be_registration_successful_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.SUCCESSFUL_REGISTRATION_MESSAGE)
@@ -89,7 +89,7 @@ class RegistrationPage(BasePage):
                'Registration was unsuccessful'
 
     def should_be_continue_link_button(self):
-        assert self.is_element_present(
+        assert self.element_is_present(
             *RegistrationPageLocators.CONTINUE_BUTTON), \
                 "'Continue' button is not present"
 
