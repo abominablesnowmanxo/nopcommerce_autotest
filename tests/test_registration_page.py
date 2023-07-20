@@ -1,9 +1,11 @@
 import pytest
+import allure
 
 from tests.pages.registration_page import RegistrationPage
 from tests.data.urls import REGISTRATION_PAGE_URL
 
-
+@allure.feature('Registration functionality')
+@allure.story('Positive tests')
 class TestRegistrationPagePositive:
 
     # TC_RF_001
@@ -23,6 +25,8 @@ class TestRegistrationPagePositive:
         page.should_be_continue_link_button()
 
 
+@allure.feature('Registration functionality')
+@allure.story('Negative tests')
 class TestRegistrationPageNegative:
 
     # TC_RF_003

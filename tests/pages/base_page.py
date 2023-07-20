@@ -1,3 +1,5 @@
+import allure
+
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -13,7 +15,8 @@ class BasePage:
         self.url = url
 
     def open_page(self):
-        self.driver.get(self.url)
+        with allure.step(f'Open the page: {self.url}'):
+            self.driver.get(self.url)
 
     def select_from_dropdown_menu(self, by, selector):
         return Select(self.driver.find_element(by, selector))

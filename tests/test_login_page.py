@@ -1,4 +1,5 @@
 import pytest
+import allure
 
 from tests.pages.login_page import LoginPage
 from tests.pages.registration_page import RegistrationPage
@@ -6,6 +7,7 @@ from tests.data.user_model import User
 from tests.data.urls import LOGIN_PAGE_URL, REGISTRATION_PAGE_URL
 
 
+@allure.feature('Login functionality')
 class TestLoginFunctionality:
     @pytest.fixture(scope='function')
     def user(self, driver):
@@ -61,6 +63,7 @@ class TestLoginFunctionality:
         page.log_out_link_is_not_present()
 
 
+@allure.feature('Login page')
 class TestLoginPage:
 
     # TC_LF_006

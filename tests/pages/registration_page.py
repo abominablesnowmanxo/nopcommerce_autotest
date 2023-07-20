@@ -1,3 +1,5 @@
+import allure
+
 from tests.pages.base_page import BasePage
 from tests.pages.locators import RegistrationPageLocators
 from tests.data.user_model import User
@@ -7,28 +9,34 @@ from tests.data.urls import REGISTRATION_PAGE_URL
 class RegistrationPage(BasePage):
 
     def enter_first_name(self, firstname):
-        self.driver.find_element(
-            *RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(firstname)
+        with allure.step(f'Enter firstname ({firstname})'):
+            self.driver.find_element(
+                *RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(firstname)
 
     def enter_last_name(self, lastname):
-        self.driver.find_element(
-            *RegistrationPageLocators.LAST_NAME_FIELD).send_keys(lastname)
+        with allure.step(f'Enter lastname ({lastname})'):
+            self.driver.find_element(
+                *RegistrationPageLocators.LAST_NAME_FIELD).send_keys(lastname)
 
     def enter_email(self, email):
-        self.driver.find_element(
-            *RegistrationPageLocators.EMAIL_FIELD).send_keys(email)
+        with allure.step(f'Enter email ({email})'):
+            self.driver.find_element(
+                *RegistrationPageLocators.EMAIL_FIELD).send_keys(email)
 
     def enter_company_name(self, company_name):
-        self.driver.find_element(
-            *RegistrationPageLocators.COMPANY_NAME).send_keys(company_name)
+        with allure.step(f'Enter company_name ({company_name})'):
+            self.driver.find_element(
+                *RegistrationPageLocators.COMPANY_NAME).send_keys(company_name)
 
     def enter_password(self, password):
-        self.driver.find_element(
-            *RegistrationPageLocators.PASSWORD_FIELD).send_keys(password)
+        with allure.step(f'Enter password ({password})'):
+            self.driver.find_element(
+                *RegistrationPageLocators.PASSWORD_FIELD).send_keys(password)
 
     def enter_confirm_password(self, password):
-        self.driver.find_element(
-            *RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(password)
+        with allure.step(f'Enter password confirmation ({password})'):
+            self.driver.find_element(
+                *RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(password)
 
     def enter_date_of_birth(self, day, month, year):
         self.select_from_dropdown_menu(
@@ -39,16 +47,18 @@ class RegistrationPage(BasePage):
             *RegistrationPageLocators.YEAR_OF_BIRTH).select_by_value(year)
 
     def select_gender(self, gender):
-        if gender == 'Male':
-            self.driver.find_element(
-                *RegistrationPageLocators.GENDER_RADIO_MALE).click()
-        elif gender == 'Female':
-            self.driver.find_element(
-                *RegistrationPageLocators.GENDER_RADIO_FEMALE).click()
+        with allure.step(f'Enter gender ({gender})'):
+            if gender == 'Male':
+                self.driver.find_element(
+                    *RegistrationPageLocators.GENDER_RADIO_MALE).click()
+            elif gender == 'Female':
+                self.driver.find_element(
+                    *RegistrationPageLocators.GENDER_RADIO_FEMALE).click()
 
     def click_submit_button(self):
-        self.driver.find_element(
-            *RegistrationPageLocators.SUBMIT_BUTTON).click()
+        with allure.step(f'Click Submit button'):
+            self.driver.find_element(
+                *RegistrationPageLocators.SUBMIT_BUTTON).click()
 
     def user_can_registrer_providing_required_fields_only(self):
         user = User()
@@ -71,7 +81,7 @@ class RegistrationPage(BasePage):
         self.enter_password(user.password)
         self.enter_confirm_password(user.password)
         self.click_submit_button()
-
+    
     def should_be_registration_successful_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.SUCCESSFUL_REGISTRATION_MESSAGE)
