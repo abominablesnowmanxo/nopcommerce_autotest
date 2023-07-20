@@ -21,7 +21,7 @@ class User:
     gender: str = field(default_factory=lambda: random.choice(('Male', 'Female')))
 
     def __post_init__(self):
-        date_of_birth = fake.date_of_birth()
+        date_of_birth = fake.date_of_birth(maximum_age=99)
         self.day_of_birth = str(date_of_birth.day)
         self.month_of_birth = date_of_birth.strftime('%B')
         self.year_of_birth = str(date_of_birth.year)

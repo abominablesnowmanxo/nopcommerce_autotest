@@ -8,6 +8,8 @@ from tests.data.urls import REGISTRATION_PAGE_URL
 
 class RegistrationPage(BasePage):
 
+    user = User()
+
     def enter_first_name(self, firstname):
         with allure.step(f'Enter firstname ({firstname})'):
             self.driver.find_element(
@@ -39,12 +41,15 @@ class RegistrationPage(BasePage):
                 *RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(password)
 
     def enter_date_of_birth(self, day, month, year):
-        self.select_from_dropdown_menu(
-            *RegistrationPageLocators.DAY_OF_BIRTH).select_by_value(day)
-        self.select_from_dropdown_menu(
-            *RegistrationPageLocators.MONTH_OF_BIRTH).select_by_visible_text(month)
-        self.select_from_dropdown_menu(
-            *RegistrationPageLocators.YEAR_OF_BIRTH).select_by_value(year)
+        with allure.step(f'Enter the day of birth: {day}'):
+            self.select_from_dropdown_menu(
+                *RegistrationPageLocators.DAY_OF_BIRTH).select_by_value(day)
+        with allure.step(f'Enter the month of birth: {month}'):
+            self.select_from_dropdown_menu(
+                *RegistrationPageLocators.MONTH_OF_BIRTH).select_by_visible_text(month)
+        with allure.step(f'Enter the year of birth: {year}'):
+            self.select_from_dropdown_menu(
+                *RegistrationPageLocators.YEAR_OF_BIRTH).select_by_value(year)
 
     def select_gender(self, gender):
         with allure.step(f'Enter gender ({gender})'):
