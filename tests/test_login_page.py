@@ -2,7 +2,6 @@ import pytest
 
 from tests.pages.login_page import LoginPage
 from tests.pages.registration_page import RegistrationPage
-# from tests.data.random_data import generate_user
 from tests.data.user_model import User
 from tests.data.urls import LOGIN_PAGE_URL, REGISTRATION_PAGE_URL
 
