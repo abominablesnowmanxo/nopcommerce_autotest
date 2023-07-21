@@ -44,8 +44,8 @@ def driver(request):
     Usage:
         Use 'driver' as an argument in test functions to access the WebDriver instance.
     """
-    browser = request.config.getoption('browser')
-    headless = request.config.getoption('headless')
+    browser = request.config.getoption('--browser')
+    headless = request.config.getoption('--headless')
     if browser == 'chrome':
         options = ChromeOptions()
         if headless:
