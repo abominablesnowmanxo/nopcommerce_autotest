@@ -64,3 +64,4 @@ pytestdebug.log
 # Reports
 report.html
 assets
+allure*

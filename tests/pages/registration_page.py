@@ -8,37 +8,35 @@ from tests.data.urls import REGISTRATION_PAGE_URL
 
 class RegistrationPage(BasePage):
 
-    user = User()
-
+    @allure.step('Enter firstname: {firstname}')
     def enter_first_name(self, firstname):
-        with allure.step(f'Enter firstname ({firstname})'):
-            self.driver.find_element(
-                *RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(firstname)
+        self.driver.find_element(
+            *RegistrationPageLocators.FIRST_NAME_FIELD).send_keys(firstname)
 
+    @allure.step('Enter lastname: {lastname}')
     def enter_last_name(self, lastname):
-        with allure.step(f'Enter lastname ({lastname})'):
-            self.driver.find_element(
-                *RegistrationPageLocators.LAST_NAME_FIELD).send_keys(lastname)
+        self.driver.find_element(
+            *RegistrationPageLocators.LAST_NAME_FIELD).send_keys(lastname)
 
+    @allure.step('Enter email: {email}')
     def enter_email(self, email):
-        with allure.step(f'Enter email ({email})'):
-            self.driver.find_element(
-                *RegistrationPageLocators.EMAIL_FIELD).send_keys(email)
+        self.driver.find_element(
+            *RegistrationPageLocators.EMAIL_FIELD).send_keys(email)
 
+    @allure.step('Enter company_name: {company_name}')
     def enter_company_name(self, company_name):
-        with allure.step(f'Enter company_name ({company_name})'):
-            self.driver.find_element(
-                *RegistrationPageLocators.COMPANY_NAME).send_keys(company_name)
+        self.driver.find_element(
+            *RegistrationPageLocators.COMPANY_NAME).send_keys(company_name)
 
+    @allure.step('Enter password: {password}')
     def enter_password(self, password):
-        with allure.step(f'Enter password ({password})'):
-            self.driver.find_element(
-                *RegistrationPageLocators.PASSWORD_FIELD).send_keys(password)
+        self.driver.find_element(
+            *RegistrationPageLocators.PASSWORD_FIELD).send_keys(password)
 
+    @allure.step('Enter password confirmation: {password}')
     def enter_confirm_password(self, password):
-        with allure.step(f'Enter password confirmation ({password})'):
-            self.driver.find_element(
-                *RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(password)
+        self.driver.find_element(
+            *RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(password)
 
     def enter_date_of_birth(self, day, month, year):
         with allure.step(f'Enter the day of birth: {day}'):
@@ -51,19 +49,19 @@ class RegistrationPage(BasePage):
             self.select_from_dropdown_menu(
                 *RegistrationPageLocators.YEAR_OF_BIRTH).select_by_value(year)
 
+    @allure.step('Enter gender: {gender}')
     def select_gender(self, gender):
-        with allure.step(f'Enter gender ({gender})'):
-            if gender == 'Male':
-                self.driver.find_element(
-                    *RegistrationPageLocators.GENDER_RADIO_MALE).click()
-            elif gender == 'Female':
-                self.driver.find_element(
-                    *RegistrationPageLocators.GENDER_RADIO_FEMALE).click()
-
-    def click_submit_button(self):
-        with allure.step(f'Click Submit button'):
+        if gender == 'Male':
             self.driver.find_element(
-                *RegistrationPageLocators.SUBMIT_BUTTON).click()
+                *RegistrationPageLocators.GENDER_RADIO_MALE).click()
+        elif gender == 'Female':
+            self.driver.find_element(
+                *RegistrationPageLocators.GENDER_RADIO_FEMALE).click()
+
+    @allure.step('Click Submit button')
+    def click_submit_button(self):
+        self.driver.find_element(
+            *RegistrationPageLocators.SUBMIT_BUTTON).click()
 
     def user_can_registrer_providing_required_fields_only(self):
         user = User()
@@ -87,12 +85,14 @@ class RegistrationPage(BasePage):
         self.enter_confirm_password(user.password)
         self.click_submit_button()
 
+    @allure.step('Check that registration success message is present')
     def should_be_registration_successful_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.SUCCESSFUL_REGISTRATION_MESSAGE)
         assert message.text == 'Your registration completed', \
                'Registration was unsuccessful'
 
+    @allure.step('Check that Continue link is present')
     def should_be_continue_link_button(self):
         assert self.element_is_present(
             *RegistrationPageLocators.CONTINUE_BUTTON), \
