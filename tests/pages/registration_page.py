@@ -38,16 +38,20 @@ class RegistrationPage(BasePage):
         self.driver.find_element(
             *RegistrationPageLocators.CONFIRM_PASSWORD_FIELD).send_keys(password)
 
-    def enter_date_of_birth(self, day, month, year):
-        with allure.step(f'Enter the day of birth: {day}'):
-            self.select_from_dropdown_menu(
-                *RegistrationPageLocators.DAY_OF_BIRTH).select_by_value(day)
-        with allure.step(f'Enter the month of birth: {month}'):
-            self.select_from_dropdown_menu(
-                *RegistrationPageLocators.MONTH_OF_BIRTH).select_by_visible_text(month)
-        with allure.step(f'Enter the year of birth: {year}'):
-            self.select_from_dropdown_menu(
-                *RegistrationPageLocators.YEAR_OF_BIRTH).select_by_value(year)
+    @allure.step('Enter the day of birth: {day}')
+    def enter_day_of_birth(self, day):
+        self.select_from_dropdown_menu(
+            *RegistrationPageLocators.DAY_OF_BIRTH).select_by_value(day)
+
+    @allure.step('Enter the month of birth: {month}')
+    def enter_month_of_birth(self, month):
+        self.select_from_dropdown_menu(
+            *RegistrationPageLocators.MONTH_OF_BIRTH).select_by_visible_text(month)
+
+    @allure.step('Enter the year of birth: {year}')
+    def enter_year_of_birth(self, year):
+        self.select_from_dropdown_menu(
+            *RegistrationPageLocators.YEAR_OF_BIRTH).select_by_value(year)
 
     @allure.step('Enter gender: {gender}')
     def select_gender(self, gender):
@@ -77,8 +81,9 @@ class RegistrationPage(BasePage):
         self.select_gender(user.gender)
         self.enter_first_name(user.first_name)
         self.enter_last_name(user.last_name)
-        self.enter_date_of_birth(
-            user.day_of_birth, user.month_of_birth, user.year_of_birth)
+        self.enter_day_of_birth(user.day_of_birth)
+        self.enter_month_of_birth(user.month_of_birth)
+        self.enter_year_of_birth(user.year_of_birth)
         self.enter_email(user.email)
         self.enter_company_name(user.company)
         self.enter_password(user.password)
@@ -106,6 +111,7 @@ class RegistrationPage(BasePage):
         self.enter_confirm_password(user.password)
         self.click_submit_button()
 
+    @allure.step('Check that \'First Name\' error message is present')
     def should_be_first_name_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.FIRST_NAME_ERROR)
@@ -120,6 +126,7 @@ class RegistrationPage(BasePage):
         self.enter_confirm_password(user.password)
         self.click_submit_button()
 
+    @allure.step('Check that \'Last Name\' error message is present')
     def should_be_last_name_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.LAST_NAME_ERROR)
@@ -134,6 +141,7 @@ class RegistrationPage(BasePage):
         self.enter_confirm_password(user.password)
         self.click_submit_button()
 
+    @allure.step('Check that \'Email\' error message is present')
     def should_be_email_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.EMAIL_ERROR)
@@ -147,6 +155,7 @@ class RegistrationPage(BasePage):
         self.enter_email(user.email)
         self.click_submit_button()
 
+    @allure.step('Check that \'Password\' error message is present')
     def should_be_password_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.PASSWORD_ERROR)
@@ -161,6 +170,7 @@ class RegistrationPage(BasePage):
         self.enter_password(user.password)
         self.click_submit_button()
 
+    @allure.step('Check that \'Confirm Password\' error message is present')
     def should_be_confirm_password_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.CONFIRM_PASSWORD_ERROR)
@@ -176,12 +186,15 @@ class RegistrationPage(BasePage):
         self.enter_confirm_password(user.password_mismatch)
         self.click_submit_button()
 
+
+    @allure.step('Check that \'Mismatch passwords\' error message is present')
     def should_be_passwords_mismatch_error_message(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.CONFIRM_PASSWORD_ERROR)
         assert message.text == 'The password and confirmation password do not match.', \
             "'The password and confirmation password do not match.' message is not present"
 
+    @allure.step('Check that user stays on the registration page')
     def user_stays_on_registration_page(self):
         assert self.driver.current_url == REGISTRATION_PAGE_URL
 
@@ -194,6 +207,7 @@ class RegistrationPage(BasePage):
         self.enter_confirm_password(short_password)
         self.click_submit_button()
 
+    @allure.step('Check password length error message is present')
     def should_be_short_password_error_massage(self):
         message = self.driver.find_element(
             *RegistrationPageLocators.SHORT_PASSWORD_ERROR)
