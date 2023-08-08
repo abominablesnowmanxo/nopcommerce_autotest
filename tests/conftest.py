@@ -1,6 +1,8 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 
@@ -8,9 +10,6 @@ from selenium.webdriver.edge.options import Options as EdgeOptions
 def pytest_addoption(parser):
     """
     Pytest hook to add custom command-line options for browser selection and headless mode.
-
-    Args:
-        parser (pytest.Parser): The pytest command-line option parser.
 
     Usage:
         --browser: Choose the browser for test execution (chrome, firefox, edge).
@@ -50,7 +49,10 @@ def driver(request):
         options = ChromeOptions()
         if headless:
             options.headless = True
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Chrome(
+            service=Service(ChromeDriverManager().install()),
+            options=options
+        )
     elif browser == 'firefox':
         options = FirefoxOptions()
         if headless:

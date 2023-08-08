@@ -38,7 +38,7 @@ class BasePage:
             raise error
 
 
-    def element_is_present(self, by, selector: str):
+    def element_is_present(self, by, selector: str) -> bool:
         """
         Checks if an element is present on the page.
 
@@ -55,7 +55,7 @@ class BasePage:
             return False
         return True
 
-    def element_is_not_present(self, by, selector, timeout=4):
+    def element_is_not_present(self, by: str, selector: str, timeout=4) -> bool:
         """
         Checks if an element is not present on the page within the given timeout.
 
